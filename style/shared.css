@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+}
+
+.slideshow {
+    height: 300px;
+    width: 180px;
+    perspective: 1000px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);   
+}
+
+.content {
+    animation: animate 25s infinite linear;
+    transform-style: preserve-3d;
+}
+
+figure {
+    overflow: hidden;
+    box-shadow: 0 0 20px red;
+    position: absolute;
+    border-radius: 10px;   
+}
+
+figure img {
+    max-width: 200px;
+    width: auto;
+    height: auto;
+}
+
+figure:nth-child(1) {
+    transform: rotateY(0deg) translateZ(400px);
+}
+
+figure:nth-child(2) {
+    transform: rotateY(36deg) translateZ(400px);
+}
+
+figure:nth-child(3) {
+    transform: rotateY(72deg) translateZ(400px);
+}
+
+figure:nth-child(4) {
+    transform: rotateY(108deg) translateZ(400px);
+}
+
+figure:nth-child(5) {
+    transform: rotateY(144deg) translateZ(400px);
+}
+
+figure:nth-child(6) {
+    transform: rotateY(180deg) translateZ(400px);
+}
+
+figure:nth-child(7) {
+    transform: rotateY(216deg) translateZ(400px);
+}
+
+figure:nth-child(8) {
+    transform: rotateY(252deg) translateZ(400px);
+}
+
+figure:nth-child(9) {
+    transform: rotateY(288deg) translateZ(400px);
+}
+
+figure:nth-child(10) {
+    transform: rotateY(324deg) translateZ(400px);
+}
+
+figure:nth-child(11) {
+    transform: rotateY(360deg) translateZ(400px);
+}
+
+@keyframes animate {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}

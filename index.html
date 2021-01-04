@@ -2,27 +2,53 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="style/shared.css">
     <title>2010-11 Chicago Bulls</title>
+
+    <link rel="stylesheet" type="text/css" href="style/shared.css">
+
+    <script src="js/stats.js"></script>
 </head>
 
 <body>
     <div class="slideshow">
         <div class="content">
-            <figure><img src="img/stats/Taj Gibson.jpg"></figure>
-            <figure><img src="img/stats/C.J. Watson.jpg"></figure>
-            <figure><img src="img/stats/Omer Asik.jpg"></figure>
-            <figure><img src="img/stats/Ronnie Brewer.jpg"></figure>
-            <figure><img src="img/stats/Brian Scalabrine.jpg"></figure>
-            <figure><img src="img/stats/Keith Bogans.jpg"></figure>
-            <figure><img src="img/stats/Kyle Korver.jpg"></figure>
-            <figure><img src="img/stats/Carlos Boozer.jpg"></figure>
-            <figure><img src="img/stats/Luol Deng.jpg"></figure>
-            <figure><img src="img/stats/Joakim Noah.jpg"></figure>
-            <figure><img src="img/stats/Derrick Rose.jpg"></figure>
-            <figure><img src="img/stats/Coach.jpg"></figure>
+            <figure id="derrick_rose"><img src="img/stats/Derrick Rose.jpg"></figure>
+            <figure id="joakim_noah"><img src="img/stats/Joakim Noah.jpg"></figure>
+            <figure id="carlos_boozer"><img src="img/stats/Carlos Boozer.jpg"></figure>
+            <figure id="luol_deng"><img src="img/stats/Luol Deng.jpg"></figure>
+            <figure id="taj_gibson"><img src="img/stats/Taj Gibson.jpg"></figure>
+            <figure id="c.j._watson"><img src="img/stats/C.J. Watson.jpg"></figure>
+            <figure id="kyle_korver"><img src="img/stats/Kyle Korver.jpg"></figure>
+            <figure id="omer_asik"><img src="img/stats/Omer Asik.jpg"></figure>
+            <figure id="keith_bogans"><img src="img/stats/Keith Bogans.jpg"></figure>
+            <figure id="ronnie_brewer"><img src="img/stats/Ronnie Brewer.jpg"></figure>
+            <figure id="coach"><img src="img/stats/Coach.jpg"></figure>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('figure').forEach(item => {
+            item.addEventListener("click", function () {
+
+                if (item.id === 'coach') {
+                    return
+                }
+
+                fetch(`https://www.balldontlie.io/api/v1/players?search=${item.id}`).then(response => {
+                    return response.json()
+                }).then(playerDataJson => {
+
+                    let playerId = playerDataJson.data[0].id
+                    fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2010&player_ids[]=${playerId}`).then(response => {
+                        return response.json()
+                    }).then(seasonAvgsJson => {
+
+                        console.log(seasonAvgsJson.data[0])
+                    })
+                })
+            })
+        })
+    </script>
 </body>
 
 </html>

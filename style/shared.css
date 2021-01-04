@@ -16,7 +16,7 @@ body {
 }
 
 .content {
-    animation: animate 25s infinite linear;
+    animation: animate 15s infinite linear;
     transform-style: preserve-3d;
 }
 
@@ -73,15 +73,12 @@ figure:nth-child(10) {
     transform: rotateY(324deg) translateZ(400px);
 }
 
-figure:nth-child(11) {
-    transform: rotateY(360deg) translateZ(400px);
-}
 
 @keyframes animate {
     from {
-        transform: rotateY(0deg);
+        transform: rotateY(360deg);
     }
     to {
-        transform: rotateY(360deg);
+        transform: rotateY(0deg);
     }
 }

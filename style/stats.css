@@ -1,0 +1,40 @@
+.stats {
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    background-color: #ce1141;
+    color: black;
+    top: 0;
+    right: 0;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    display: none;
+}
+
+.stats img {
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-position: top center;
+    border: 5px solid black;
+}
+
+.stats ul {
+    padding-inline-start: 0;
+    list-style-type: none;
+}
+
+.stats li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+@media only screen and (max-width: 768px) {
+    .stats {
+        width: 100vw;
+    }
+}

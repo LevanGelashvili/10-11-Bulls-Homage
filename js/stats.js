@@ -34,6 +34,7 @@ function loadStatsParams(data) {
     var height = 'Height: '
     var weight = 'Weight: '
 
+    // API doesn't return some of the height/weights, so we have to add them manually
     switch (name) {
         case 'Omer Asik':
             height += "7'0"
@@ -65,6 +66,25 @@ function loadStatsParams(data) {
     document.getElementById('stats-weight').innerHTML = weight
 }
 
+function loadStats(statsPanel, data) {
+    setStat('stats-minutes', data.min)
+    setStat('stats-games', data.games_played)
+    setStat('stats-points', data.pts)
+    setStat('stats-assists', data.ast)
+    setStat('stats-rebounds', data.reb)
+    setStat('stats-steals', data.stl)
+    setStat('stats-blocks', data.blk)
+    setStat('stats-turnovers', data.turnover)
+    setStat('stats-fouls', data.pf)
+    setStat('stats-fg%', data.fg_pct.toLocaleString('en', {style: 'percent'}))
+    setStat('stats-3p%', data.fg3_pct.toLocaleString('en', {style: 'percent'}))
+    setStat('stats-ft%', data.ft_pct.toLocaleString('en', {style: 'percent'}))
+}
+
+function setStat(id, value) {
+    document.getElementById(id).querySelector('p').innerHTML = value
+}
+
 function loadStatsAvatar(name) {
 
     let image = document.getElementById('stats-avatar')
@@ -90,26 +110,4 @@ function loadStatsAvatar(name) {
     } else if(name === 'Ronnie Brewer') {
         image.src = 'https://cdn.nba.com/headshots/nba/latest/1040x760/201565.png'
     }
-}
-
-function loadStats(statsPanel, data) {
-    setStat('stats-minutes', data.min)
-    setStat('stats-games', data.games_played)
-    setStat('stats-points', data.pts)
-    setStat('stats-assists', data.ast)
-    setStat('stats-rebounds', data.reb)
-    setStat('stats-steals', data.stl)
-    setStat('stats-blocks', data.blk)
-    setStat('stats-turnovers', data.turnover)
-    setStat('stats-fg%', data.fg_pct.toLocaleString('en', {style: 'percent'}))
-    setStat('stats-3p%', data.fg3_pct.toLocaleString('en', {style: 'percent'}))
-    setStat('stats-ft%', data.ft_pct.toLocaleString('en', {style: 'percent'}))
-}
-
-function setStat(id, value) {
-    let arr = document.getElementById(id).innerHTML.split(' ')
-    if (arr.length > 1) {
-        arr = arr.slice(0, -1)
-    }
-    document.getElementById(id).innerHTML = arr.join(' ') + ' ' + value
 }

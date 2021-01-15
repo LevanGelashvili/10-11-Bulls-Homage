@@ -4,7 +4,7 @@
     perspective: 1000px;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: calc(50% - 180px);
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
@@ -19,6 +19,9 @@ figure {
     box-shadow: 0 0 20px #ce1141;
     position: absolute;
     border-radius: 10px;   
+}
+figure :hover{
+    cursor: pointer;
 }
 
 figure img {

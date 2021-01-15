@@ -16,17 +16,25 @@
     margin: auto 0;
 }
 
-#stats-name {
-    font-size: 25px;
-}
 
 .stats-upper {
-    padding: 0;
-    font-size: 20px;
-    color: gainsboro;
-    display: flex;
+    display:flex;
     flex-direction: row;
-    text-align: left;
+    justify-content: flex-start;
+    align-items:center;
+    padding:15px 15px 35px 15px;
+    border-bottom:1px dotted gainsboro;
+}
+.stats-params p{
+    color: gainsboro;
+    margin:0;
+}
+.stats-params .name{
+    font-size: 20px;
+}
+.stats-params .param{
+    font-size:14px;
+    color:rgb(181, 178, 178);
 }
 
 .stats-params {
@@ -42,26 +50,32 @@
     object-fit: cover;
     border-radius: 50%;
     background-position: top center;
-    border: 5px solid black;
+    border: 2px solid rgb(181, 178, 178);
 }
-
-.stats-items {
-    display: flex;
+.stats-items{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.stats-items li{
+    display:flex;
+    justify-content: flex-start;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-
-    text-align: center;
-    padding-inline-start: 0;
-    list-style-type: none;   
+    list-style-type: none;
+    align-items:center;
 }
+.stats-items h3{
+    color:gainsboro;
+    font-size:14px;
+    margin:12px 0px;
+}
+.stats-items p{
+    padding:0;
+    margin:0 10px;
+    color:rgb(181, 178, 178);
+    font-size:12px;
 
-.stats li {
-    border: 2px white solid;
-    width: 45%;
-    margin-bottom: 3%;
-    font-size: 16px;
 }
 
 @media only screen and (max-width: 850px) {
@@ -69,3 +83,4 @@
         width: 100vw;
     }
 }
+

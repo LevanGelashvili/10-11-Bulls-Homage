@@ -11,12 +11,13 @@ let paramsMap = {
     'Ronnie Brewer': {'height': "6'7", 'weight': '235', 'position': 'SF / SG', 'avatar': 'https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2991.png'}
 }
 
-let statsPanel = document.querySelector('.stats')
 let slideshow = document.querySelector('.slideshow')
+let statsPanel = document.querySelector('.stats')
+statsPanel.style.transition = '0.6s'
 
 document.addEventListener('click', function(event) {
     if (!statsPanel.contains(event.target) && !slideshow.contains(event.target)) {
-        statsPanel.style.display = 'none'
+        statsPanel.style.opacity = 0
     }
 });
 
@@ -38,9 +39,7 @@ document.querySelectorAll('figure').forEach(item => {
                 return response.json()
             }).then(seasonAvgsJson => {
                 
-                statsPanel.style.display = 'flex'
-
-                console.log(seasonAvgsJson)
+                statsPanel.style.opacity = 1
 
                 let name = data.first_name + ' ' + data.last_name
                 loadStatsParams(name)

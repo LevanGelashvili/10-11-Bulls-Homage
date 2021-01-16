@@ -1,3 +1,25 @@
+let paramsMap = {
+    'Derrick Rose': {'height': "6,3", 'weight': '200', 'position': 'PG', 'avatar': 'https://cdn.nba.com/headshots/nba/latest/1040x760/201565.png'},
+    'Joakim Noah': {'height': "6,11", 'weight': '232', 'position': 'C', 'avatar': 'https://www.nba.com/.element/img/2.0/sect/statscube/players/large/joakim_noah.png'},
+    'Carlos Boozer': {'height': "6'9", 'weight': '258', 'position': 'PF / C', 'avatar': 'https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1703.png'},
+    'Keith Bogans': {'height': "6'5", 'weight': '215', 'position': 'SG / SF', 'avatar': 'https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/1995.png'},
+    'Kyle Korver': {'height': "6'7", 'weight': '212', 'position': 'SG / SF', 'avatar': 'https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2011.png'},
+    'Luol Deng': {'height': "6'9", 'weight': '237', 'position': 'SF', 'avatar': 'https://alchetron.com/cdn/luol-deng-ed52bac7-845f-4b74-bc49-699c12b4e6a-resize-750.png'},
+    'Taj Gibson': {'height': "6'9", 'weight': '232', 'position': 'PF', 'avatar': 'https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3986.png&w=350&h=254'},
+    'Omer Asik': {'height': "7'0", 'weight': '252', 'position': 'C', 'avatar': 'https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3414.png'},
+    'C.J. Watson': {'height': "6'2", 'weight': '175', 'position': 'PG', 'avatar': 'https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3277.png'},
+    'Ronnie Brewer': {'height': "6'7", 'weight': '235', 'position': 'SF / SG', 'avatar': 'https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2991.png'}
+}
+
+let statsPanel = document.querySelector('.stats')
+let slideshow = document.querySelector('.slideshow')
+
+document.addEventListener('click', function(event) {
+    if (!statsPanel.contains(event.target) && !slideshow.contains(event.target)) {
+        statsPanel.style.display = 'none'
+    }
+});
+
 document.querySelectorAll('figure').forEach(item => {
             
     item.addEventListener('click', function () {
@@ -15,58 +37,34 @@ document.querySelectorAll('figure').forEach(item => {
             fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2010&player_ids[]=${data.id}`).then(response => {
                 return response.json()
             }).then(seasonAvgsJson => {
-
-                loadStatsParams(data)
-                loadStatsAvatar(data.first_name + ' ' + data.last_name)
-
-                let statsPanel = document.getElementsByClassName('stats')[0]
-                statsPanel.style.display = 'flex'
                 
-                loadStats(statsPanel, seasonAvgsJson.data[0])
+                statsPanel.style.display = 'flex'
+
+                console.log(seasonAvgsJson)
+
+                let name = data.first_name + ' ' + data.last_name
+                loadStatsParams(name)
+                loadStats(seasonAvgsJson.data[0])
+                document.getElementById('stats-avatar').src = paramsMap[name].avatar
             })
         })
     })
 })
 
-function loadStatsParams(data) {
+function loadStatsParams(name) {
 
-    var name = data.first_name + ' ' + data.last_name
+    var position = 'Position: '
     var height = 'Height: '
     var weight = 'Weight: '
-
-    // API doesn't return some of the height/weights, so we have to add them manually
-    switch (name) {
-        case 'Omer Asik':
-            height += "7'0"
-            weight += "255"
-            break
-        case 'Carlos Boozer':
-            height += "6'9"
-            weight += "258"
-            break
-        case 'Ronnie Brewer':
-            height += "6'7"
-            weight += "235"
-            break
-        case 'C.J. Watson':
-            height += "6'2"
-            weight += "175"
-            break
-        case 'Keith Bogans':
-            height += "6'5"
-            weight += "215"
-            break
-        default:
-            height += data.height_feet + "'" + data.height_inches
-            weight += data.weight_pounds
-    }
+    var paramsObject = paramsMap[name]
 
     document.getElementById('stats-name').innerHTML = name
-    document.getElementById('stats-height').innerHTML = height
-    document.getElementById('stats-weight').innerHTML = weight
+    document.getElementById('stats-position').innerHTML = position + paramsObject.position
+    document.getElementById('stats-height').innerHTML = height + paramsObject.height
+    document.getElementById('stats-weight').innerHTML = weight + paramsObject.weight
 }
 
-function loadStats(statsPanel, data) {
+function loadStats(data) {
     setStat('stats-minutes', data.min)
     setStat('stats-games', data.games_played)
     setStat('stats-points', data.pts)
@@ -83,31 +81,4 @@ function loadStats(statsPanel, data) {
 
 function setStat(id, value) {
     document.getElementById(id).querySelector('p').innerHTML = value
-}
-
-function loadStatsAvatar(name) {
-
-    let image = document.getElementById('stats-avatar')
-    
-    if (name === 'Derrick Rose') {
-        image.src = 'https://cdn.nba.com/headshots/nba/latest/1040x760/201565.png'
-    } else if(name === 'Joakim Noah') {
-        image.src = 'https://cdn.nba.com/headshots/nba/latest/1040x760/201565.png'
-    } else if(name === 'Carlos Boozer') {
-        image.src = 'https://cdn.nba.com/headshots/nba/latest/1040x760/201565.png'
-    } else if(name === 'Luol Deng') {
-        image.src = 'https://cdn.nba.com/headshots/nba/latest/1040x760/201565.png'
-    } else if(name === 'Taj Gibson') {
-        image.src = 'https://cdn.nba.com/headshots/nba/latest/1040x760/201565.png'
-    } else if(name === 'C.J. Watson') {
-        image.src = 'https://cdn.nba.com/headshots/nba/latest/1040x760/201565.png'
-    } else if(name === 'Kyle Korver') {
-        image.src = 'https://cdn.nba.com/headshots/nba/latest/1040x760/201565.png'
-    } else if(name === 'Omer Asik') {
-        image.src = 'https://cdn.nba.com/headshots/nba/latest/1040x760/201565.png'
-    } else if(name === 'Keith Bogans') {
-        image.src = 'https://cdn.nba.com/headshots/nba/latest/1040x760/201565.png'
-    } else if(name === 'Ronnie Brewer') {
-        image.src = 'https://cdn.nba.com/headshots/nba/latest/1040x760/201565.png'
-    }
 }

@@ -18,7 +18,8 @@ figure {
     overflow: hidden;
     box-shadow: 0 0 20px #ce1141;
     position: absolute;
-    border-radius: 10px;   
+    border-radius: 10px;  
+    background: black; 
 }
 figure :hover{
     cursor: pointer;

@@ -2,20 +2,19 @@
     width: 25%;
     height: 100vh;
     position: fixed;
-    background-color: #ce1141;
+    background: linear-gradient(90deg, black 20%, rgba(206,17,65,1) 100%);
     color: black;
     top: 0;
     right: 0;
     display: flex;
     flex-direction: column;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex; /* none! */
+    display: none;
 }
 
 #stats-avatar {
     margin: auto 0;
 }
-
 
 .stats-upper {
     display:flex;
@@ -23,7 +22,6 @@
     justify-content: flex-start;
     align-items:center;
     padding:15px 15px 35px 15px;
-    border-bottom:1px dotted gainsboro;
 }
 .stats-params p{
     color: gainsboro;

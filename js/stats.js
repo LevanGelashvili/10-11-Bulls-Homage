@@ -10,45 +10,55 @@ let paramsMap = {
     'C.J. Watson': {'height': "6'2", 'weight': '175', 'position': 'PG', 'avatar': 'https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3277.png'},
     'Ronnie Brewer': {'height': "6'7", 'weight': '235', 'position': 'SF / SG', 'avatar': 'https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/2991.png'}
 }
-
 let slideshow = document.querySelector('.slideshow')
 let statsPanel = document.querySelector('.stats')
 statsPanel.style.transition = '0.6s'
 
-document.addEventListener('click', function(event) {
-    if (!statsPanel.contains(event.target) && !slideshow.contains(event.target)) {
-        statsPanel.style.opacity = 0
-    }
-});
+init()
 
-document.querySelectorAll('figure').forEach(item => {
-            
-    item.addEventListener('click', function () {
+function init() {
+    addOutsideClickListener()
+    fetchData()
+}
 
-        if (item.id === 'coach') {
-            return
+function addOutsideClickListener() {
+    document.addEventListener('click', function(event) {
+        if (!statsPanel.contains(event.target) && !slideshow.contains(event.target)) {
+            statsPanel.style.opacity = 0
         }
+    });
+}
 
-        fetch(`https://www.balldontlie.io/api/v1/players?search=${item.id}`).then(response => {
-            return response.json()
-        }).then(playerDataJson => {
+function fetchData() {
+    document.querySelectorAll('figure').forEach(item => {
             
-            let data = playerDataJson.data[0]
-
-            fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2010&player_ids[]=${data.id}`).then(response => {
+        item.addEventListener('click', function () {
+    
+            if (item.id === 'coach') {
+                return
+            }
+    
+            fetch(`https://www.balldontlie.io/api/v1/players?search=${item.id}`).then(response => {
                 return response.json()
-            }).then(seasonAvgsJson => {
+            }).then(playerDataJson => {
                 
-                statsPanel.style.opacity = 1
-
-                let name = data.first_name + ' ' + data.last_name
-                loadStatsParams(name)
-                loadStats(seasonAvgsJson.data[0])
-                document.getElementById('stats-avatar').src = paramsMap[name].avatar
+                let data = playerDataJson.data[0]
+    
+                fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2010&player_ids[]=${data.id}`).then(response => {
+                    return response.json()
+                }).then(seasonAvgsJson => {
+                    
+                    statsPanel.style.opacity = 1
+    
+                    let name = data.first_name + ' ' + data.last_name
+                    loadStatsParams(name)
+                    loadStats(seasonAvgsJson.data[0])
+                    document.getElementById('stats-avatar').src = paramsMap[name].avatar
+                })
             })
         })
     })
-})
+}
 
 function loadStatsParams(name) {
 

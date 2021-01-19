@@ -1,0 +1,36 @@
+.schedule-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: flex-start;
+    text-align: left;
+    padding-inline-start: 0;
+    list-style-type: none;
+}
+
+.schedule-container li {
+    width: 200px;
+    text-align: center;
+    border: 1px #ce1141 solid;
+}
+
+.schedule-win-loss {
+    color: gainsboro;
+}
+
+.schedule-home-away {
+    color: gainsboro;
+}
+
+.schedule-score {
+    color: gainsboro;
+}
+
+.schedule-date {
+    color: gainsboro;
+}
+
+.schedule-logo {
+    max-width: 100px;
+    height: auto;
+}

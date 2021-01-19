@@ -53,12 +53,14 @@ function fetchData() {
 function appendGame(game) {
 
     let [chicagoHome, chicagoWon] = getChicagoDetails(game)
+    let otherTeamAbbr = getOtherTeamAbbreviation(game)
 
     var date = createChild('p', 'schedule-date', stringFromDate(game.date))
     var score = createChild('p', 'schedule-score', game.home_team_score + ' - ' + game.visitor_team_score)
-    var homeAway = createChild('p', 'schedule-home-away', generateHomeAwayLetter(chicagoHome))
+    var homeAway = createChild('h2', 'schedule-home-away', generateHomeAwayLetter(chicagoHome))
+    var abbr = createChild('h3', 'schedule-abbr', otherTeamAbbr)
     
-    var winLoss = createChild('p', 'schedule-win-loss', generateWinLossLetter(chicagoWon))
+    var winLoss = createChild('h1', 'schedule-win-loss', generateWinLossLetter(chicagoWon))
     if (chicagoWon) {
         winLoss.style.color = 'green'
     } else {
@@ -66,7 +68,7 @@ function appendGame(game) {
     }
 
     var logo = createChild('img', 'schedule-logo', '')
-    logo.src = logoMap[getOtherTeamAbbreviation(game)]
+    logo.src = logoMap[otherTeamAbbr]
 
     var li = document.createElement('li')
     li.appendChild(date)
@@ -74,6 +76,7 @@ function appendGame(game) {
     li.appendChild(winLoss)
     li.appendChild(homeAway)
     li.appendChild(logo)
+    li.appendChild(abbr)
     list.appendChild(li)
 }
 

@@ -1,3 +1,7 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .schedule-container {
     display: flex;
     flex-flow: row wrap;
@@ -9,9 +13,13 @@
 }
 
 .schedule-container li {
-    width: 200px;
+    width: 300px;
     text-align: center;
     border: 1px #ce1141 solid;
+}
+
+.schedule-abbr {
+    color: gainsboro;
 }
 
 .schedule-win-loss {

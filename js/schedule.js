@@ -139,8 +139,6 @@ function addListenersAndAppend(li, index, chicagoWon) {
         img.style.opacity = '0.3'
     })
 
-    list.appendChild(li)
-
     setTimeout(function () {
 
         li.style.opacity = 1
@@ -150,7 +148,9 @@ function addListenersAndAppend(li, index, chicagoWon) {
         } else {
             losses++
         }
+        
         document.querySelector('.schedule-standings').innerHTML = wins + " - " + losses
+        list.appendChild(li)
 
-    }, 500 * index); 
+    }, 800 * index); 
 }

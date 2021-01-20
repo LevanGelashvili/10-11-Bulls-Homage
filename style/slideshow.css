@@ -10,7 +10,7 @@
 }
 
 .content {
-    animation: animate 15s infinite linear;
+    animation: animate 25s infinite linear;
     transform-style: preserve-3d;
 }
 

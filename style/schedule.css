@@ -13,6 +13,10 @@ body {
     z-index: 2;
 }
 
+.back-button:hover {
+    transform: scale(1.1);
+}
+
 .schedule-standings {
     padding: 20px 35px;
     text-align: center;

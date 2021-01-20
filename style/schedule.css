@@ -1,8 +1,37 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+}
+
+.back-button {
+    width: 60px;
+    height: auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 10px 0 0 10px;
+    z-index: 2;
+}
+
+.schedule-standings {
+    padding: 20px 35px;
+    text-align: center;
+    font-size: 40px;
+    color: #ce1141;
+    position: fixed;
+    top: 0;
+    border-bottom: 1px #ce1141 solid;
+    width: 100%;
+    z-index: 1;
+    background: black;
+}
+
+.schedule-standings + .schedule-container {
+    padding-top: 100px;
 }
 
 .schedule-container {
+    padding: 10px;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -14,31 +43,70 @@ body {
 
 .schedule-container li {
     width: 300px;
+    border-radius: 5px;
+    height: 150px;
     text-align: center;
+    margin: 20px;
     border: 1px #ce1141 solid;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    opacity: 0;
 }
 
-.schedule-abbr {
-    color: gainsboro;
+.schedule-container li:hover {
+    transform: scale(1.1);
 }
 
 .schedule-win-loss {
     color: gainsboro;
-}
-
-.schedule-home-away {
-    color: gainsboro;
+    position: absolute;
+    bottom:0;
+    left:50%;
+    font-weight: 900;
+    font-size:40px;
 }
 
 .schedule-score {
     color: gainsboro;
+    position:absolute;
+    right:0;
+    bottom:0;
+    font-weight: 900;
+    font-size:20px;
+    padding:5px 10px;
 }
 
 .schedule-date {
     color: gainsboro;
+    position: absolute;
+    padding:10px;
+    top:0px;
+    left:0px;
+    font-weight: 900;
+    font-size:18px;
 }
 
 .schedule-logo {
-    max-width: 100px;
+    width: 80%;
     height: auto;
+    position:absolute;
+    top:-40%;
+    left:10%;
+    filter: grayscale(60%);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index:-2;
+}
+
+.schedule-triangle {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 200px 100px 0 0;
+    border-color: #ce1140 transparent transparent transparent;
 }
